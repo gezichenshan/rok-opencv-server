@@ -25,19 +25,26 @@ const requiresImgBase64 = (req, res, next) => {
 
 app.post('/is_in_homeland', requiresImgBase64, async (req, res) => {
   try {
-    
-  const data = await rok.isInHomeLand(req.body.imgBase64)
-  console.log('isInHomeLand',data)
-  res.status(200).send(data)
+
+    const data = await rok.isInHomeLand(req.body.imgBase64)
+    console.log('isInHomeLand', data)
+    res.status(200).send(data)
   } catch (error) {
-    console.log('error',error)
+    console.log('error', error)
     res.status(400).send()
   }
 });
 
 app.post('/find_cutout_position', requiresImgBase64, async (req, res) => {
   const data = await rok.findCutoutPosition(req.body.imgBase64)
-  console.log('rok-title position',data)
+  console.log('rok-title position', data)
+  res.status(200).send(data);
+});
+
+
+app.post('/find_fav_position', requiresImgBase64, async (req, res) => {
+  const data = await rok.findFavPosition(req.body.imgBase64)
+  console.log('fav position', data)
   res.status(200).send(data);
 });
 
